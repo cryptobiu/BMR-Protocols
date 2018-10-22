@@ -32,8 +32,8 @@ inline void runBGWprotocolLatinCrypt();
 void writeToFile(char** argv, int version);
 
 
-//#define PRINT_STEPS
-//#define TIMING
+#define PRINT_STEPS
+#define TIMING
 
 //For timing
 int repetition;
