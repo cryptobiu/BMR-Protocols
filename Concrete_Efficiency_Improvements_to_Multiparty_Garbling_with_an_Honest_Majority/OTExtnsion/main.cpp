@@ -30,7 +30,7 @@ inline void runBGWprotocolLatinCrypt();
 void writeToFile(char** argv, int version);
 
 
-//#define PRINT_STEPS
+#define PRINT_STEPS
 #define TIMING
 
 //For timing
@@ -457,6 +457,8 @@ inline void runBGWprotocol()//BGW versions except versions 12, 13, 22, and 23
 
 inline bool* onlinePhase(char* filename)
 {
+	cout << "onlinePhase" << endl;
+
 	//2 - load inputs from file
 	loadInputs(filename, cyc, p);
 
@@ -576,6 +578,7 @@ inline void runBGWprotocolLatinCrypt()
 
 inline bool* onlinePhaseLatinCrypt(char* filename)
 {
+	cout << "onlinePhaseLatinCrypt" << endl;
 	//2 - load inputs from file
 	loadInputs(filename, cyc, p);
 

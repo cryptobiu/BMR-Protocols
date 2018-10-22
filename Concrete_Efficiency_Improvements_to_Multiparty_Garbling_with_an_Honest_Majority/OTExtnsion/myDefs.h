@@ -26,7 +26,7 @@
 
 /*macros for functionality*/
 #define RANDOM_COMPUTE 256//Size of buffer for random elements
-#define TEST_ROUNDS 5//1//5//11 //number of times to repeat, for timing testing. TEST_ROUNDS>11 cancels printing of results. TEST_ROUNDS=1 cancels averaging of times.
+#define TEST_ROUNDS 100//1//5//11 //number of times to repeat, for timing testing. TEST_ROUNDS>11 cancels printing of results. TEST_ROUNDS=1 cancels averaging of times.
 //#define TEST
 
 //Fixed key is shared by all parties
