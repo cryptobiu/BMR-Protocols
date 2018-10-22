@@ -1,0 +1,11 @@
+xterm -hold -e "./BMRPassive.out -1 3Party/5adder5bits.circ 3Party/adderP0 parties 43739841701238781571456410093f41 14" &
+
+xterm -hold -e "./BMRPassive.out 1 3Party/5adder5bits.circ 3Party/adderP1 parties 43739841701238781571456410093f42 14" &
+
+xterm -hold -e "./BMRPassive.out 2 3Party/5adder5bits.circ 3Party/adderP2 parties 43739841701238781571456410093f43 14" &
+
+xterm -hold -e "./BMRPassive.out 3 3Party/5adder5bits.circ 3Party/adderP3 parties 43739841701238781571456410093f43 14" &
+
+xterm -hold -e "./BMRPassive.out 4 3Party/5adder5bits.circ 3Party/adderP4 parties 43739841701238781571456410093f43 14" 
+
+echo "Finished"

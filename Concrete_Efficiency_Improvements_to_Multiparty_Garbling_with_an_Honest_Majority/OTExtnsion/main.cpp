@@ -4,6 +4,8 @@
 #include "BMR_BGW.h"
 //
 #include "BMR_BGW_Latincrypt.h"
+
+#include "../util/MatrixMeasurement.h"
 //
 #include <math.h>
 
@@ -30,8 +32,8 @@ inline void runBGWprotocolLatinCrypt();
 void writeToFile(char** argv, int version);
 
 
-#define PRINT_STEPS
-#define TIMING
+//#define PRINT_STEPS
+//#define TIMING
 
 //For timing
 int repetition;
@@ -54,6 +56,8 @@ double totalTimes[TEST_ROUNDS];//without setup
 */
 int main(int argc, char** argv)
 {
+
+	MatrixMeasurement matrixStuff(argc,argv,vector<string>{"offline","online"},TEST_ROUNDS);
 
 	// donothingTest();
 #ifdef TIMING
@@ -87,8 +91,9 @@ for (repetition = 0; repetition < TEST_ROUNDS; repetition++)
 		synchronize();
 		synchronize();
 
+	matrixStuff.startSubTask("offline", repetition);
 	offlinePhase();
-
+	matrixStuff.endSubTask("offline",repetition);
 
 	{
 	synchronize();
@@ -99,7 +104,9 @@ for (repetition = 0; repetition < TEST_ROUNDS; repetition++)
 		auto onlineStart = chrono::high_resolution_clock::now();
 	#endif
 
+	matrixStuff.startSubTask("online", repetition);
 	out=onlinePhaseLatinCrypt(argv[3]);
+	matrixStuff.endSubTask("online",repetition);
 
 
 	#ifdef PRINT_STEPS
@@ -127,7 +134,12 @@ for (repetition = 0; repetition < TEST_ROUNDS; repetition++)
 	totalTimes[repetition]=(double) (chrono::duration<double> (roundEnd - roundStart)).count();
 	#ifdef PRINT_STEPS
 		cout<<"Round Time = "<<totalTimes[repetition]<<endl;
-	#endif //PRINT_STEPS
+		/*
+		 *
+		 *
+		 */
+
+		#endif //PRINT_STEPS
 	#endif //TIMING
 
 }//end for loop
@@ -457,7 +469,7 @@ inline void runBGWprotocol()//BGW versions except versions 12, 13, 22, and 23
 
 inline bool* onlinePhase(char* filename)
 {
-	cout << "onlinePhase" << endl;
+//	cout << "onlinePhase" << endl;
 
 	//2 - load inputs from file
 	loadInputs(filename, cyc, p);
@@ -578,7 +590,7 @@ inline void runBGWprotocolLatinCrypt()
 
 inline bool* onlinePhaseLatinCrypt(char* filename)
 {
-	cout << "onlinePhaseLatinCrypt" << endl;
+//	cout << "onlinePhaseLatinCrypt" << endl;
 	//2 - load inputs from file
 	loadInputs(filename, cyc, p);
 
