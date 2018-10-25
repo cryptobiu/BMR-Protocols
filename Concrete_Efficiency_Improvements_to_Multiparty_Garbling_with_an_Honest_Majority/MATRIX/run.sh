@@ -21,17 +21,9 @@ while IFS= read -r line || [[ -n "${line}" ]]; do
     parties+=(${l})
 done < ../parties.conf
 
-for each in "${parties[@]}"
-do
-  echo "$each"
-done
-
 printf "%s\n" "${parties[@]}" > parties
 
+# execute the program
 idx=${1}
-#addr=${parties[0]}
-#
 cd ../
-#./innerproduct_test -r ${idx} -a ${addr} ${values}
-
 ./BMRPassive ${idx} ${values}
