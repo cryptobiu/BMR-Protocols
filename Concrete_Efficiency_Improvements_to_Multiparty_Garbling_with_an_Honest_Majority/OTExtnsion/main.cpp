@@ -25,10 +25,7 @@ bool *out;
 inline void intializationPhase(int argc, char** argv);
 inline void offlinePhase();
 // inline void computeRandom();
-inline void runBGWprotocol();
-inline bool* onlinePhase(char* filename);
 inline bool* onlinePhaseLatinCrypt(char* filename);
-inline void runBGWprotocolLatinCrypt();
 void writeToFile(char** argv, int version);
 
 
@@ -37,14 +34,11 @@ void writeToFile(char** argv, int version);
 
 //For timing
 int repetition;
-double totalTimewSetup;
 double setupTime;
 double offlineTimes[TEST_ROUNDS];
 double offlineIndTimes[TEST_ROUNDS];
 double offlineDepTimes[TEST_ROUNDS];
 double onlineTimes[TEST_ROUNDS];
-//double onlineTimesSync[TEST_ROUNDS];
-double computationTimes[TEST_ROUNDS];
 double totalTimes[TEST_ROUNDS];//without setup
 
 /*main program. Should receive as arguments:

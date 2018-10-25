@@ -493,7 +493,7 @@ char* truthTableToString(TruthTable TTB, char * charbuff){
 void printCircuit(const Circuit * c)
 {
 	char trueTBuffer[30];
-	char * flagsFriendlyNames[] = { "", dispXor, dispXnor };
+	char * flagsFriendlyNames[] = { (char*) "", (char*) dispXor, (char*) dispXnor };
 	int p, i;
 	if (c == NULL) {
 		printf("Error: got NULL...\n");
@@ -640,17 +640,23 @@ void freeCircle(Circuit * c)
 		freePlayer(c->playerArray[i]);
 	}
 
+
 	freePlayer(c->outputWires);
 
-	free(c->regularGates);
+	if(NULL == c->regularGates)
+	    free(c->regularGates);
 
-	free(c->specialGates);
+    if(NULL == c->specialGates)
+	    free(c->specialGates);
 
-	free(c->allWires);
+    if(NULL == c->allWires)
+	    free(c->allWires);
 
-	free(c->playerArray);
+    if(NULL == c->playerArray)
+	    free(c->playerArray);
 
-	free(c->gateArray);
+    if(NULL == c->gateArray)
+	    free(c->gateArray);
 
 	free(c);
 }
@@ -666,52 +672,52 @@ void printVersion(int version)
 	switch (version)
 	{
 	case 1:
-		versionString = "BGW3 - Honest majority BGW";
+		versionString = (char*) "BGW3 - Honest majority BGW";
 		break;
 	case 2:
-		versionString = "BGW2 - >2/3 Honest parties (two comm. rounds)";
+		versionString = (char*) "BGW2 - >2/3 Honest parties (two comm. rounds)";
 		break;
 	case 3:
-		versionString = "BGW 4 - Honest majority BGW with extra reduction communication round";
+		versionString = (char*) "BGW 4 - Honest majority BGW with extra reduction communication round";
 		break;
 	case 10:
-		versionString = "BGW3 - Honest majority BGW version";
+		versionString = (char*) "BGW3 - Honest majority BGW version";
 		break;
 	case 11:
-		versionString = "BGW3 version with share conversion (quadratic complexity)";
+		versionString = (char*) "BGW3 version with share conversion (quadratic complexity)";
 		break;
 	case 12:
-		versionString = "BGW3 version with HME and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW3 version with HME and share conversion (quadratic complexity)";
 		break;
 	case 13:
-		versionString = "BGW3 version with efficient zero-sharing, HME, and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW3 version with efficient zero-sharing, HME, and share conversion (quadratic complexity)";
 		break;
 	case 14:
-		versionString = "BGW3 version with hypercube, efficient zero-sharing, HME, and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW3 version with hypercube, efficient zero-sharing, HME, and share conversion (quadratic complexity)";
 		break;
 	// case 15://This should be - BGW3 - all optimizations
 	// 	versionString = "Honest majority BGW version with one evaluator";
 	// 	break;
 	case 20:
-		versionString = "BGW2 - >2/3 Honest parties (two comm. rounds)";
+		versionString = (char*) "BGW2 - >2/3 Honest parties (two comm. rounds)";
 		break;
 	case 21:
-		versionString = "BGW2 with share conversion (quadratic complexity)";
+		versionString = (char*) "BGW2 with share conversion (quadratic complexity)";
 		break;
 	case 22:
-		versionString = "BGW2 with HME and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW2 with HME and share conversion (quadratic complexity)";
 		break;
 	case 23:
-		versionString = "BGW2 with efficient zero-sharing, HME, and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW2 with efficient zero-sharing, HME, and share conversion (quadratic complexity)";
 		break;
 	case 24:
-		versionString = "BGW2 with hypercube, efficient zero-sharing, HME, and share conversion (quadratic complexity)";
+		versionString = (char*) "BGW2 with hypercube, efficient zero-sharing, HME, and share conversion (quadratic complexity)";
 		break;
 	// case 25://This should be - BGW2 - all optimizations
 	// 	version = "Honest majority BGW version with one evaluator";
 	// 	break;
 	default:
-		versionString = "unrecognized";
+		versionString = (char*) "unrecognized";
 		break;
 	}
 	std::cout << std::endl<< std::endl << "Version: " << versionString;
