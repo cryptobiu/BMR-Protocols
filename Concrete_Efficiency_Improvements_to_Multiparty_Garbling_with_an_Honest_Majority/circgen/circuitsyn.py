@@ -135,19 +135,21 @@ def gen_adder(n,S):
 	return circ
 
 
+def generate_circuit(n,q):
+	q_infty = binomial(n,2)*q+1
+	S1 = q_infty*2+1
+	log = math.log(S1,2)
+	S2 = 2**ceil(log)
+	add_circ = gen_adder(n,ceil(log))
+	f = open("%02dadder%dbits.circ"%(n,ceil(log)), "w")
+	f.write(add_circ)
+	f.close()
+
 if __name__ == '__main__':
 	# add_circ = gen_adder(5,5)
 	# print add_circ	
 
 	q = 100
 	for n in range(3,26,2):
-		q_infty = binomial(n,2)*q+1
-		S1 = q_infty*2+1
-		log = math.log(S1,2)
-		S2 = 2**ceil(log)
-		add_circ = gen_adder(n,ceil(log))
-		f = open("%02dadder%dbits.circ"%(n,ceil(log)), "w")
-		f.write(add_circ)
-		f.close() 
-
+		# generate_circuit(n,q)
 
