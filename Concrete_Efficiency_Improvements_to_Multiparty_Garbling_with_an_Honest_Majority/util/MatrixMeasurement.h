@@ -2,11 +2,12 @@
 // Created by liork on 8/22/18.
 //
 
-#ifndef MATRIXMEASUREMENT_H
-#define MATRIXMEASUREMENT_H
+#ifndef ABY_MATRIXMEASUREMENT_H
+#define ABY_MATRIXMEASUREMENT_H
 
 #include <string>
 #include <chrono>
+#include <unistd.h>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -20,11 +21,10 @@ class MatrixMeasurement
 private:
     string getcwdStr()
     {
-        char buff[256];
-        auto res = getcwd(buff, 256);
-        if(NULL == res)
-            exit(-1);
-        return string(res);
+        char buff[255];//automatically cleaned when it exits scope
+        getcwd(buff,255);
+        string cwd(buff);
+        return cwd;
     }
 
     int getTaskIdx(string name)
@@ -45,9 +45,10 @@ public:
             m_cpuEndTimes(vector<vector<long>>(tasksNames.size(), vector<long>(numberOfIterations)))
     {
 
-        for(size_t idx = 0; idx < argc; ++idx)
+        for(size_t idx = 1; idx < argc; ++idx)
         {
             string s(argv[idx]);
+            s.erase(std::remove(s.begin(), s.end(), '/'), s.end());
             if (idx < argc - 1)
                 m_arguments += s + "*";
             else
@@ -79,14 +80,9 @@ public:
         // if this is the last task and last iteration write the data to file
         if (taskIdx == m_tasksNames.size() - 1 && currentIterationNumber == m_cpuEndTimes[0].size() - 1)
         {
-            string path = getenv("MATRIX_RESULT_DIR");
-            string logFileName;
-            if (NULL == path.c_str())
-                logFileName = getcwdStr() + m_arguments + ".log";
-            else
-                logFileName = getcwdStr() + path + m_arguments + ".log";
-
-            ofstream logFile(logFileName);
+            string logFileName = getcwdStr() + "/MATRIX/logs/" + m_arguments + ".log";
+            cout << "logsFileName: " << logFileName << endl;
+            ofstream logFile(logFileName, ios_base::out);
             if (logFile.is_open())
             {
                 //write to file
@@ -98,7 +94,7 @@ public:
                     for (size_t idx2 = 0; idx2 < numberOfIterations; ++idx2)
                     {
                         cout << "value : " << m_cpuEndTimes[idx][idx2] << endl;
-                        logFile << to_string(m_cpuEndTimes[idx][idx2] - m_cpuStartTimes[idx][idx2])
+                        logFile << to_string(m_cpuEndTimes[idx][idx2]- m_cpuStartTimes[idx][idx2])
                                    + ",";
                     }
 
@@ -110,4 +106,4 @@ public:
     }
 };
 
-#endif //MATRIXMEASUREMENT_H
+#endif //ABY_MATRIXMEASUREMENT_H

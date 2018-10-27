@@ -1,0 +1,15 @@
+# project conf
+.idea/
+
+# executables
+BMRPassive
+BMRPassive.cbp
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-debug
+cmake_install.cmake
+Makefile
+
+MATRIX/logs
