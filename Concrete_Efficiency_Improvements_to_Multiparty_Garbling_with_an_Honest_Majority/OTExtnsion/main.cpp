@@ -166,6 +166,8 @@ inline void intializationPhase(int argc, char** argv)
 	c = loadCircuit(argv[2]);
 
 	cout << "Number parties: " << c->amountOfPlayers << endl;
+	if(p >= c->amountOfPlayers)
+	    exit(-1);
 	cout << "Number of AND gates: " << c->numOfANDGates << endl;
 	cout << "Number of XOR gates: " << c->numOfXORGates << endl;
 
