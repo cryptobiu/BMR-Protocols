@@ -22,6 +22,7 @@ while IFS= read -r line || [[ -n "${line}" ]]; do
 done < ../parties.conf
 
 printf "%s\n" "${parties[@]}" > parties
+mv parties ../
 
 # execute the program
 idx=${1}
