@@ -19,7 +19,7 @@ while IFS= read -r line || [[ -n "${line}" ]]; do
     # cut = split('=)
     l=`echo ${line} | cut -d'=' -f2`
     parties+=(${l})
-done < ../parties.conf
+done < parties.conf
 
 printf "%s\n" "${parties[@]}" > parties
 mv parties ../
