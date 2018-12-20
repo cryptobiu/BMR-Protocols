@@ -1,0 +1,13 @@
+# project files
+*.cbp
+DDHbasedBMROnline/.idea
+
+#cmake files
+DDHbasedBMROnline/Makefile
+DDHbasedBMROnline/CMakeFiles
+DDHbasedBMROnline/CMakeCache.txt
+DDHbasedBMROnline/cmake_install.cmake
+
+#binaries files
+DDHbasedBMROnline/HomOnlineTest.out
+
