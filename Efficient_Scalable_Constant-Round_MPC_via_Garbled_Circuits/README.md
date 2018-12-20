@@ -1,4 +1,4 @@
-Efficient Scalable Constant-Round MPC via Garble Circuits
+## Efficient Scalable Constant-Round MPC via Garble Circuits
 
 Implementation of the online computation of the semi-honest secure constant round protocols in the paper "Efficient Scalable Constant-Round MPC via Garbled Circuits" by Aner Ben-Efraim, Yehuda Lindell, and Eran Omri, Asiacrypt 2017.
 
