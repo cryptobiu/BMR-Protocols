@@ -4,6 +4,8 @@ Implementation of the code using key homomorphic PRFs based on DDH in quadratic 
 
 #### Compilation
 
+The project uses ntl-9.10.0. In order to compile the project you should install it before compiling the project.  
+Please install it at your home directory. NTL is available at this [link](https://www.shoup.net/ntl/ntl-9.10.0.tar.gz) 
 Compilation is done using cmake: `cmake . && make`
 
 #### Execution
