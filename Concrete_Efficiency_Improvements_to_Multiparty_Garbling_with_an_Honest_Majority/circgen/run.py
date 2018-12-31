@@ -50,7 +50,10 @@ if __name__ == '__main__':
 			partyid = i
 		else:
 			partyid = -1
-		CMD = '''xterm -hold -e "./BMRPassive.out %d %s %s %s %s %d"'''%(partyid,circuitfile,inputfile, ipfile, RANDOM,VERSION)
+		if partyid == 0:
+			CMD = '''xterm -hold -e "./BMRPassive.out %d %s %s %s %s %d"'''%(partyid,circuitfile,inputfile, ipfile, RANDOM,VERSION)
+		else:
+			CMD = '''xterm -e "./BMRPassive.out %d %s %s %s %s %d"'''%(partyid,circuitfile,inputfile, ipfile, RANDOM,VERSION)
 		print CMD
 		subprocess.Popen(CMD, shell=True)
 		# os.system(CMD)
